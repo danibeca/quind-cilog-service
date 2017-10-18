@@ -20,7 +20,8 @@ $router->group([
 
         $router->get('/{id:[\d]+}', ['uses' => 'ComponentController@show']);
 
-        $router->post('/{id:[\d]+}/leaf-jobs', ['uses' => 'ComponentJobController@index']);
+        $router->post('/{id:[\d]+}/leaf-jobs', ['uses' => 'ComponentJobLeafController@create']);
+        $router->post('/{id:[\d]+}/jobs', ['uses' => 'ComponentJobController@create']);
 
 
     });
