@@ -19,6 +19,7 @@ $router->group([
         'namespace' => 'Component'], function () use ($router) {
 
         $router->get('/{id:[\d]+}', ['uses' => 'ComponentController@show']);
+        $router->get('/{id:[\d]+}/leaves', ['uses' => 'ComponentLeafController@index']);
 
         $router->post('/{id:[\d]+}/leaf-jobs', ['uses' => 'ComponentJobLeafController@create']);
         $router->post('/{id:[\d]+}/jobs', ['uses' => 'ComponentJobController@create']);

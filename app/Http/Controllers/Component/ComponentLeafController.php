@@ -12,22 +12,12 @@ use App\Models\Component\Component;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 
-class ComponentController extends ApiController
+class ComponentLeafController extends ApiController
 {
-    public function index()
+    public function index($componentId)
     {
-
+        ComponentTree::fixTree();
+        $component = Component::find($componentId);
+        return $this->respondData((new ComponentTransformer())->transformCollection($component->getLeaves()->toArray()));
     }
-
-    public function show($componentId)
-    {
-        /*ComponentTree::fixTree();
-        if (Input::has('leaves'))
-        {
-            $component = Component::find($componentId);
-            return $this->respondData((new ComponentTransformer())->transformCollection($component->getLeaves()->toArray()));
-        }*/
-    }
-
-
 }
