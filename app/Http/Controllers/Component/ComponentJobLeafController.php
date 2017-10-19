@@ -13,7 +13,7 @@ class ComponentJobLeafController extends ApiController
     public function create($componentId)
     {
 
-        $leaves = Input::get('data');
+        $leaves = Input::all();
         foreach ($leaves as $leaf)
         {
             $jobs = $leaf['jobs'];

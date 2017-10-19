@@ -18,6 +18,7 @@ class ComponentLeafController extends ApiController
     {
         ComponentTree::fixTree();
         $component = Component::find($componentId);
-        return $this->respondData((new ComponentTransformer())->transformCollection($component->getLeaves()->toArray()));
+        return $this->respond(array_values((new ComponentTransformer())->transformCollection($component->getLeaves()->toArray())));
+
     }
 }

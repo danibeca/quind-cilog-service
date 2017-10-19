@@ -13,7 +13,7 @@ class ComponentJobController extends ApiController
     public function create($componentId)
     {
 
-        $jobs = Input::get('data');
+        $jobs = Input::all();
 
             foreach ($jobs as $jobI)
             {
