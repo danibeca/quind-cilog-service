@@ -12,7 +12,8 @@ class ComponentTransformer extends Transformer
             'id'  => $component['id'],
             'name' =>$component['app_code'],
             'collection' =>$component['collection'],
-            'url' =>$component['api_server_url'],
+            'urlBuildServer' =>$component['api_server_url'],
+            'urlReleaseManager' =>$component['api_release_manager_url'],
             'username' =>$component['username'],
             'token' =>$component['password']
         ];
