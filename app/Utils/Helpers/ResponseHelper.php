@@ -72,6 +72,11 @@ trait ResponseHelper
         return Response::json($data, $this->getStatusCode(), $headers, JSON_UNESCAPED_UNICODE);
     }
 
+    public function respondStandard($data, $headers = [])
+    {
+        return Response::json(array_values($data), $this->getStatusCode(), $headers, JSON_UNESCAPED_UNICODE);
+    }
+
     public function respondData($data, $headers = [])
     {
         return Response::json(['data' => $data], $this->getStatusCode(), $headers, JSON_UNESCAPED_UNICODE);
