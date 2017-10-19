@@ -14,7 +14,8 @@ class AddApiReleaseManagerUrlToComponents extends Migration
     public function up()
     {
         Schema::table('components', function (Blueprint $table) {
-            $table->addColumn('string','api_release_manager_url',['length'=> 250]);
+            $table->addColumn('string','api_release_manager_url',['length'=> 250])->after('api_server_url');
+
         });
     }
 
