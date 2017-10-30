@@ -100,7 +100,7 @@ class CISystemInstanceController extends ApiController
                 $newClient->save();
                 $cisi->api_client_id = $newClient->id;
             }
-            $qsi->save();
+            $cisi->save();
 
             return $this->respond('OK');
         }
