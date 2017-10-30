@@ -18,11 +18,16 @@ $router->group([
         'prefix'    => '/components',
         'namespace' => 'Component'], function () use ($router) {
 
-        $router->get('/{id:[\d]+}', ['uses' => 'ComponentController@show']);
+        $router->get('/', ['uses' => 'ComponentController@index']);
+        $router->post('/', ['uses' => 'ComponentController@store']);
+        $router->put('/{id:[\d]+}', ['uses' => 'ComponentController@update']);
+        $router->delete('/{id:[\d]+}', ['uses' => 'ComponentController@destroy']);
+
         $router->get('/{id:[\d]+}/leaves', ['uses' => 'ComponentLeafController@index']);
 
+/*
         $router->post('/{id:[\d]+}/leaf-jobs', ['uses' => 'ComponentJobLeafController@create']);
-        $router->post('/{id:[\d]+}/jobs', ['uses' => 'ComponentJobController@create']);
+        $router->post('/{id:[\d]+}/jobs', ['uses' => 'ComponentJobController@create']);*/
 
     });
 
