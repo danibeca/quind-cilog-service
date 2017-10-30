@@ -11,8 +11,10 @@ class CISystemInstanceTransformer extends Transformer
         return [
             'id' => $instance['id'],
             'name'  => $instance['c_i_system']['name'],
-            'url'  => $instance['url'],
-            'username'  => $instance['username'],
+            'url_build_server'  => $instance['url_build_server'],
+            'username_build_server'  => $instance['username_build_server'],
+            'url_release_manager'  => $instance['url_release_manager'],
+            'username_release_manager'  => $instance['username_release_manager'],
             'type'  => $instance['type'],
             'ci_system_id' => $instance['type'],
             'verified' =>$instance['verified'],
