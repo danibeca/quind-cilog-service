@@ -22,7 +22,7 @@ class CreateCISystemInstancesTable extends Migration
             $table->string('url_build_server', 150);
             $table->string('username_build_server', 150)->nullable();
             $table->string('password_build_server', 150)->nullable();
-            $table->integer('url_release_manager');
+            $table->string('url_release_manager',150);
             $table->string('username_release_manager', 150)->nullable();
             $table->string('password_release_manager', 150)->nullable();
 
