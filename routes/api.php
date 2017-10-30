@@ -50,9 +50,8 @@ $router->group([
         'prefix'    => '/api-clients',
         'namespace' => 'APIClient'], function () use ($router) {
         $router->get('/{code}/roots', ['uses' => 'APIClientComponentController@index']);
-        $router->get('/{code}/changes', ['uses' => 'APIClientComponentController@update']);
+        $router->post('/{code}/changes', ['uses' => 'APIClientComponentController@update']);
 
-        $router->post('/{code}/resources', ['uses' => 'APIClientResourceController@store']);
     });
 
 });

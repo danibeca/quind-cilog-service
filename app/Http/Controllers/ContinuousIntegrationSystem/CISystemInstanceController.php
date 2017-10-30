@@ -67,11 +67,10 @@ class CISystemInstanceController extends ApiController
 
     public function update(Request $request, $id)
     {
-        $qsi = CISystemInstance::find($id);
-        if (isset($qsi))
+        $cisi = CISystemInstance::find($id);
+        if (isset($cisi))
         {
             $verified = ($request->has('verified')) ? $request->verified : false;
-            $cisi = new CISystemInstance();
             $cisi->ci_system_id = $request->ci_system_id;
             $cisi->url_build_server = $request->url_build_server;
             $cisi->url_release_manager = $request->url_release_manager;

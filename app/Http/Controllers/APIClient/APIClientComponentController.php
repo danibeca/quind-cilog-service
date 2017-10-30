@@ -53,6 +53,7 @@ class APIClientComponentController extends ApiController
 
     public function update(Request $request, $code)
     {
+        /*
         $component = Component::find($code);
         if (isset($component))
         {
@@ -65,7 +66,7 @@ class APIClientComponentController extends ApiController
             $component->save();
 
         }
-
+        */
         return $this->respond('OK');
     }
 
