@@ -23,7 +23,7 @@ class CreateComponentsTable extends Migration
             $table->integer('ci_system_instance_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('ci_system_instance_id')->references('id')->on('ci_systems');
+            $table->foreign('ci_system_instance_id')->references('id')->on('ci_system_instances');
 
 
         });
