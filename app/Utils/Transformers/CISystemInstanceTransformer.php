@@ -10,7 +10,7 @@ class CISystemInstanceTransformer extends Transformer
     {
         return [
             'id' => $instance['id'],
-            'name'  => $instance['ci_system']['name'],
+            'name'  => $instance['c_i_system']['name'],
             'url'  => $instance['url'],
             'username'  => $instance['username'],
             'type'  => $instance['type'],
