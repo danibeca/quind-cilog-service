@@ -112,7 +112,7 @@ class CISystemInstanceController extends ApiController
     public function verify()
     {
         //return $this->respond(QualitySystemInstance::verify(Input::get('url'), Input::get('username'), Input::get('password')));
-        return true;
+        return $this->respond(true);
     }
 
 
