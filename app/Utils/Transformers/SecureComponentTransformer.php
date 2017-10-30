@@ -10,7 +10,7 @@ class SecureComponentTransformer extends Transformer
     {
         return [
             'id'                      => $component['id'],
-            'jobsPath'                => $component['job_path'],
+            'jobsPath'                => $component['jobs_path'],
             'urlBuildServer'          => $component['c_i_system_instance']['url_build_server'],
             'urlReleaseManager'       => $component['c_i_system_instance']['url_release_manager'],
             'usernameBuildServer'     => $component['c_i_system_instance']['username_build_server'],
