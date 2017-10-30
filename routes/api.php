@@ -29,17 +29,17 @@ $router->group([
     $router->group([
         'prefix'    => '/quality-systems',
         'namespace' => 'QualitySystem'], function () use ($router) {
-        $router->get('/', ['uses' => 'QualitySystemController@index']);
+        $router->get('/', ['uses' => 'ContinuousIntegrationSystemController@index']);
     });
 
     $router->group([
         'prefix'    => '/quality-system-instances',
         'namespace' => 'QualitySystem'], function () use ($router) {
-        $router->get('/', ['uses' => 'QualitySystemInstanceController@index']);
-        $router->get('/{id:[\d]+}', ['uses' => 'QualitySystemInstanceController@show']);
-        $router->get('/verify', ['uses' => 'QualitySystemInstanceController@verify']);
-        $router->post('/', ['uses' => 'QualitySystemInstanceController@store']);
-        $router->put('/{id:[\d]+}', ['uses' => 'QualitySystemInstanceController@update']);
+        $router->get('/', ['uses' => 'ContinuousIntegrationSystemInstanceController@index']);
+        $router->get('/{id:[\d]+}', ['uses' => 'ContinuousIntegrationSystemInstanceController@show']);
+        $router->get('/verify', ['uses' => 'ContinuousIntegrationSystemInstanceController@verify']);
+        $router->post('/', ['uses' => 'ContinuousIntegrationSystemInstanceController@store']);
+        $router->put('/{id:[\d]+}', ['uses' => 'ContinuousIntegrationSystemInstanceController@update']);
     });
 
 });
