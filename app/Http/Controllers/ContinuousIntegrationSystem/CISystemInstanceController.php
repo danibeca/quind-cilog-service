@@ -67,7 +67,7 @@ class CISystemInstanceController extends ApiController
 
     public function update(Request $request, $id)
     {
-        $qsi = QualitySystemInstance::find($id);
+        $qsi = CISystemInstance::find($id);
         if (isset($qsi))
         {
             $verified = ($request->has('verified')) ? $request->verified : false;
