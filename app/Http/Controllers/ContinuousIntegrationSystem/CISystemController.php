@@ -12,5 +12,4 @@ class CISystemController extends ApiController
         return $this->respondData(CISystem::where('active', true)->get());
     }
 
-
 }
