@@ -40,10 +40,10 @@ $router->group([
     $router->group([
         'prefix'    => '/ci-system-instances',
         'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
-        $router->get('/', ['uses' => 'CISInstanceController@index']);
-        $router->get('/verify', ['uses' => 'CISInstanceController@verify']);
-        $router->post('/', ['uses' => 'CISInstanceController@store']);
-        $router->put('/{id:[\d]+}', ['uses' => 'CISInstanceController@update']);
+        $router->get('/', ['uses' => 'CISystemInstanceController@index']);
+        $router->get('/verify', ['uses' => 'CISystemInstanceController@verify']);
+        $router->post('/', ['uses' => 'CISystemInstanceController@store']);
+        $router->put('/{id:[\d]+}', ['uses' => 'CISystemInstanceController@update']);
     });
 
     $router->group([
