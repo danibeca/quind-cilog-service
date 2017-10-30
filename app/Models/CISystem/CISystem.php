@@ -7,6 +7,8 @@ use Illuminate\Database\Query\Builder;
 
 class CISystem extends Model
 {
+
+    protected $table = 'ci_systems';
     protected $fillable = ['name'];
 
 
