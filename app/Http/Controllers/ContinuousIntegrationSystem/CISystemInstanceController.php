@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ContinuousIntegrationSystem;
 
 use App\Http\Controllers\ApiController;
 use App\Models\APIClient\APIClient;
-use App\Models\ContinuousIntegrationSystem\CISystemInstance;
+use App\Models\CISystem\CISystemInstance;
 use App\Utils\Transformers\CISystemInstanceTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;

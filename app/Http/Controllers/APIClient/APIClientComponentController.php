@@ -6,7 +6,7 @@ namespace App\Http\Controllers\APIClient;
 use App\Http\Controllers\ApiController;
 use App\Models\APIClient\APIClient;
 use App\Models\Component\Component;
-use App\Models\ContinuousIntegrationSystem\CISystemInstance;
+use App\Models\CISystem\CISystemInstance;
 use App\Models\QualitySystem\QualitySystemInstance;
 use App\Utils\Transformers\SecureComponentTransformer;
 use Carbon\Carbon;

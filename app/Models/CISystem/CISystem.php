@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ContinuousIntegrationSystem;
+namespace App\Models\CISystem;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
