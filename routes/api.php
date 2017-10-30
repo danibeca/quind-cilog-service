@@ -32,18 +32,27 @@ $router->group([
     });
 
     $router->group([
-        'prefix'    => '/quality-systems',
-        'namespace' => 'QualitySystem'], function () use ($router) {
+        'prefix'    => '/ci-systems',
+        'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
         $router->get('/', ['uses' => 'CISystemController@index']);
     });
 
     $router->group([
-        'prefix'    => '/quality-system-instances',
-        'namespace' => 'QualitySystem'], function () use ($router) {
+        'prefix'    => '/ci-system-instances',
+        'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
         $router->get('/', ['uses' => 'CISInstanceController@index']);
         $router->get('/verify', ['uses' => 'CISInstanceController@verify']);
         $router->post('/', ['uses' => 'CISInstanceController@store']);
         $router->put('/{id:[\d]+}', ['uses' => 'CISInstanceController@update']);
+    });
+
+    $router->group([
+        'prefix'    => '/api-clients',
+        'namespace' => 'APIClient'], function () use ($router) {
+        $router->get('/{code}/roots', ['uses' => 'APIClientComponentController@index']);
+        $router->get('/{code}/changes', ['uses' => 'APIClientComponentController@update']);
+
+        $router->post('/{code}/resources', ['uses' => 'APIClientResourceController@store']);
     });
 
 });

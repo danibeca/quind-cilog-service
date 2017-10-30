@@ -7,16 +7,16 @@ use App\Utils\Transformers\ComponentTransformer;
 use App\Utils\Transformers\IndicatorSerieTransformer;
 use App\Http\Controllers\ApiController;
 use App\Models\Component\Component;
+use App\Utils\Transformers\SecureComponentTransformer;
 
 
 class ComponentLeafController extends ApiController
 {
     public function index($componentId)
     {
-        ComponentTree::fixTree();
         $component = Component::find($componentId);
 
-        return $this->respondStandard((New ComponentTransformer())
+        return $this->respondStandard((New SecureComponentTransformer())
             ->transformCollection($component->getLeavesWithCISI()->toArray()));
     }
 }
