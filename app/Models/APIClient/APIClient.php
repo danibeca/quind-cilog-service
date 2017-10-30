@@ -12,6 +12,6 @@ class APIClient extends Model
 
     public function cISystemInstance()
     {
-        return  $this->hasMany('\App\Models\ContinuousIntegrationSystem\CISystemInstance', 'api_client_id');
+        return  $this->hasMany('\App\Models\CISystem\CISystemInstance', 'api_client_id');
     }
 }

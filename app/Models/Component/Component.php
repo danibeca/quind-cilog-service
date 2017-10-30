@@ -11,7 +11,7 @@ class Component extends Model
 
     public function cISystemInstance()
     {
-        return $this->belongsTo('\App\Models\ContinuousIntegrationSystem\CISystemInstance', 'ci_system_instance_id');
+        return $this->belongsTo('\App\Models\CISystem\CISystemInstance', 'ci_system_instance_id');
     }
 
     public function getLeavesWithCISI()

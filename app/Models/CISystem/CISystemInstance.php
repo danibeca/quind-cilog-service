@@ -12,7 +12,7 @@ class CISystemInstance extends Model
 
     public function cISystem()
     {
-        return $this->belongsTo('\App\Models\ContinuousIntegrationSystem\CISystem', 'ci_system_id');
+        return $this->belongsTo('\App\Models\CISystem\CISystem', 'ci_system_id');
     }
 
     public static function verify($url, $username, $password)
