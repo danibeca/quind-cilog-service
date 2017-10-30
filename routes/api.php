@@ -24,8 +24,22 @@ $router->group([
         $router->post('/{id:[\d]+}/leaf-jobs', ['uses' => 'ComponentJobLeafController@create']);
         $router->post('/{id:[\d]+}/jobs', ['uses' => 'ComponentJobController@create']);
 
-
     });
 
+    $router->group([
+        'prefix'    => '/quality-systems',
+        'namespace' => 'QualitySystem'], function () use ($router) {
+        $router->get('/', ['uses' => 'QualitySystemController@index']);
+    });
+
+    $router->group([
+        'prefix'    => '/quality-system-instances',
+        'namespace' => 'QualitySystem'], function () use ($router) {
+        $router->get('/', ['uses' => 'QualitySystemInstanceController@index']);
+        $router->get('/{id:[\d]+}', ['uses' => 'QualitySystemInstanceController@show']);
+        $router->get('/verify', ['uses' => 'QualitySystemInstanceController@verify']);
+        $router->post('/', ['uses' => 'QualitySystemInstanceController@store']);
+        $router->put('/{id:[\d]+}', ['uses' => 'QualitySystemInstanceController@update']);
+    });
 
 });

@@ -15,10 +15,15 @@ class ComponentTree extends Model
             return $this;
         }
 
-        return Component::from('components')
+        return ComponentTree::from('component_trees')
             ->where('_lft', '<', $this->_lft)
             ->where('_rgt', '>', $this->_rgt)
-            ->whereNull('parent_id')->get()->first;
+            ->whereNull('parent_id')->get()->first();
+    }
+
+    public static function getRoots()
+    {
+        return ComponentTree::whereNull('parent_id')->get();
     }
 
 }

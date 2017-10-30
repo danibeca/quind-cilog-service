@@ -6,7 +6,6 @@ use App\Utils\Models\Language\SelectedLanguage;
 use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 
 
 class Language

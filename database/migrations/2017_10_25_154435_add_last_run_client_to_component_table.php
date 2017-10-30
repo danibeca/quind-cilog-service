@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddApiReleaseManagerUrlToComponents extends Migration
+class AddLastRunClientToComponentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,10 @@ class AddApiReleaseManagerUrlToComponents extends Migration
     public function up()
     {
         Schema::table('components', function (Blueprint $table) {
-            $table->addColumn('string','api_release_manager_url',['length'=> 250])->after('api_server_url');
-
+            $table->dateTime('last_run_client');
+            $table->dateTime('last_run_quind');
+            $table->integer('run_client');
+            $table->integer('run_quind');
         });
     }
 
@@ -27,7 +29,8 @@ class AddApiReleaseManagerUrlToComponents extends Migration
     public function down()
     {
         Schema::table('components', function (Blueprint $table) {
-            $table->dropColumn(['api_release_manager_url']);
+            $table->dropColumn(['last_run_client', 'last_run_quind', 'run_client', 'run_quind']);
+
         });
     }
 }

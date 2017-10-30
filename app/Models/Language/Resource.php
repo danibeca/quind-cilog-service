@@ -4,7 +4,6 @@
 namespace App\Models\Language;
 
 
-
 use App\Utils\Models\Language\SelectedLanguage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;

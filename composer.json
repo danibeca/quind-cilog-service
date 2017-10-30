@@ -10,8 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "barryvdh/laravel-cors": "^0.9.3",
         "illuminate/routing": "5.5.*",
-
-        "kalnoy/nestedset": "^4.3"
+        "kalnoy/nestedset": "^4.3",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComponentJobSeriesTable extends Migration
+class CreateJobValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateComponentJobSeriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('component_job_series', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('job_values', function (Blueprint $table) {
+            $table->integer('component_id')->unsigned();
             $table->string('name',200)->nullable();
             $table->string('type',50)->nullable();
             $table->integer('external_id')->unsigned();
-            $table->integer('component_id');
+
             $table->timestamps();
 
-            //$table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
+            $table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
 
         });
     }
@@ -33,6 +33,6 @@ class CreateComponentJobSeriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('component_job_series');
+        Schema::dropIfExists('job_values');
     }
 }

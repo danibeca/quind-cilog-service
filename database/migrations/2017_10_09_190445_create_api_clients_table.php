@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCiSystemsTable extends Migration
+class CreateApiClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,21 @@ class CreateCiSystemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ci_systems', function (Blueprint $table) {
+        Schema::create('api_clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->boolean('active');
+            $table->string('code', 200);
             $table->timestamps();
         });
 
-        DB::table('ci_systems')->insert(
+
+        DB::table('api_clients')->insert(
             array(
                 array(
-                    'id' => 1,
-                    'name' => 'VSTS/TFS',
-                    'active' => true
+                    'id'   => 1,
+                    'code' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9',
                 )
-            ));
+            )
+        );
     }
 
     /**
@@ -37,6 +37,6 @@ class CreateCiSystemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ci_systems');
+        Schema::dropIfExists('api_clients');
     }
 }
