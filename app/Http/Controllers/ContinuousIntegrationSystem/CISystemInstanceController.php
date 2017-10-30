@@ -36,7 +36,7 @@ class CISystemInstanceController extends ApiController
         $cisi->url_release_manager = $request->url_release_manager;
         $cisi->type = $request->type;
         $cisi->verified = $verified;
-        $cisi->component_owner_id = $request->component_id;
+        $cisi->component_owner_id = $request->component_owner_id;
         if ($request->has('username_build_server'))
         {
             $cisi->username_build_server = $request->username_build_server;
