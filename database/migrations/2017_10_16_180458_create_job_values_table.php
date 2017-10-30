@@ -17,7 +17,7 @@ class CreateJobValuesTable extends Migration
             $table->integer('component_id')->unsigned();
             $table->string('name',200)->nullable();
             $table->string('type',50)->nullable();
-            $table->integer('external_id')->unsigned();
+        //  $table->integer('external_id')->unsigned();
 
             $table->timestamps();
 

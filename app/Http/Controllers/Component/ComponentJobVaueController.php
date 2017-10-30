@@ -15,15 +15,15 @@ class ComponentJobVaueController extends ApiController
     {
 
         $jobs = Input::all();
-
-            foreach ($jobs as $jobI)
-            {
-                $job = new JobValue();
-                $job->name = $jobI['name'];
-                $job->type = $jobI['type'];
-                $job->component_id = $componentId;
-                $job->save();
-            }
+        JobValue::where('component_id', $componentId)->delete();
+        foreach ($jobs as $jobI)
+        {
+            $job = new JobValue();
+            $job->name = $jobI['name'];
+            $job->type = $jobI['type'];
+            $job->component_id = $componentId;
+            $job->save();
+        }
 
         return $this->respondResourceCreated();
 
