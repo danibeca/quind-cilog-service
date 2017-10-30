@@ -36,7 +36,6 @@ $router->group([
         'prefix'    => '/quality-system-instances',
         'namespace' => 'QualitySystem'], function () use ($router) {
         $router->get('/', ['uses' => 'CISInstanceController@index']);
-        $router->get('/{id:[\d]+}', ['uses' => 'CISInstanceController@show']);
         $router->get('/verify', ['uses' => 'CISInstanceController@verify']);
         $router->post('/', ['uses' => 'CISInstanceController@store']);
         $router->put('/{id:[\d]+}', ['uses' => 'CISInstanceController@update']);
