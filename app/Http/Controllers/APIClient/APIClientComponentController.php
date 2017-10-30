@@ -43,7 +43,7 @@ class APIClientComponentController extends ApiController
                 $root->save();
             }
 
-            return $this->respondStandard($roots->pluck('id'));
+            return $this->respondStandard($roots->pluck('id')->toArray());
         }
 
         return $this->respondNotFound();
