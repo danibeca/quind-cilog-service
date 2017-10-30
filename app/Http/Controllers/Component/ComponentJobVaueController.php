@@ -9,9 +9,9 @@ use App\Utils\Transformers\IndicatorSerieTransformer;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Input;
 
-class ComponentJobValueController extends ApiController
+class ComponentJobVaueController extends ApiController
 {
-    public function create($componentId)
+    public function store($componentId)
     {
 
         $jobs = Input::all();

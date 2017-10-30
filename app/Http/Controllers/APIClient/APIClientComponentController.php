@@ -36,38 +36,16 @@ class APIClientComponentController extends ApiController
                         ->orWhere('last_run_client', '<=', Carbon::now()->subHours(12));
                 })->get();
 
-            $result = collect();
             /** @var Component $root */
             foreach ($roots as $root)
             {
                 $root->run_client = 2;
                 $root->save();
-                $result = $result->push($availableCompoenet = $root->getLeavesWithCISI());
             }
 
-            return $this->respondStandard((New SecureComponentTransformer())->transformCollection($result->toArray()));
+            return $this->respondStandard($roots->pluck('id'));
         }
 
         return $this->respondNotFound();
     }
-
-    public function update(Request $request, $code)
-    {
-        /*
-        $component = Component::find($code);
-        if (isset($component))
-        {
-            $component->last_run_client = Carbon::now();
-            if ($component->run_client === 2)
-            {
-                $component->run_client = 0;
-            }
-            $component->run_quind = 1;
-            $component->save();
-
-        }
-        */
-        return $this->respond('OK');
-    }
-
 }
