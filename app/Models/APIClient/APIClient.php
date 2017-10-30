@@ -10,8 +10,8 @@ class APIClient extends Model
     protected $table = 'api_clients';
 
 
-    public function continuousIntegrationSystemInstance()
+    public function cISystemInstance()
     {
-        return  $this->hasMany('\App\Models\ContinuousIntegrationSystem\ContinuousIntegrationSystemInstance', 'api_client_id');
+        return  $this->hasMany('\App\Models\ContinuousIntegrationSystem\CISystemInstance', 'api_client_id');
     }
 }

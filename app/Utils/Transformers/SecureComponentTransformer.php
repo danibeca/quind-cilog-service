@@ -3,7 +3,7 @@
 namespace App\Utils\Transformers;
 
 
-class ComponentTransformer extends Transformer
+class SecureComponentTransformer extends Transformer
 {
 
     public function transform($component)

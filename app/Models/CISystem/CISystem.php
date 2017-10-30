@@ -5,7 +5,7 @@ namespace App\Models\ContinuousIntegrationSystem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
-class ContinuousIntegrationSystem extends Model
+class CISystem extends Model
 {
     protected $fillable = ['name'];
 

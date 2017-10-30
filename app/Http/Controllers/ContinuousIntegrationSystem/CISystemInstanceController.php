@@ -1,37 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\QualitySystem;
+namespace App\Http\Controllers\ContinuousIntegrationSystem;
 
 
 use App\Http\Controllers\ApiController;
 use App\Models\APIClient\APIClient;
-use App\Models\ContinuousIntegrationSystem\ContinuousIntegrationSystemInstance;
-use App\Models\QualitySystem\QualitySystemInstance;
+use App\Models\ContinuousIntegrationSystem\CISystemInstance;
 use App\Utils\Transformers\QualitySystemInstanceTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-class ContinuousIntegrationSystemInstanceController extends ApiController
+class CISystemInstanceController extends ApiController
 {
 
 
-    /*public function index()
+  /*  public function index()
     {
         $result = collect();
-        if (Input::has('component_id') && Input::has('with_resources'))
-        {
-            $instances = ContinuousIntegrationSystemInstance::with('continuousIntegrationSystem')
-                ->where('component_owner_id', Input::get('component_id'))->get();
-            foreach ($instances as $instance)
-            {
-                $instance->resources = $instance->getResources();
-                $result->push($instance);
-            }
-
-            return $this->respondData($result);
-        }
-
-
         if (Input::has('component_id'))
         {
             return $this->respondData((new QualitySystemInstanceTransformer())
@@ -39,8 +24,8 @@ class ContinuousIntegrationSystemInstanceController extends ApiController
                     QualitySystemInstance::with('qualitySystem')->where('component_owner_id', Input::get('component_id'))->get()
                         ->toArray()));
         }
-    }*/
-
+    }
+*/
     /*public function show($instanceId)
     {
 
@@ -67,7 +52,7 @@ class ContinuousIntegrationSystemInstanceController extends ApiController
     {
 
         $verified = ($request->has('verified')) ? $request->verified : false;
-        $cisi = new ContinuousIntegrationSystemInstance();
+        $cisi = new CISystemInstance();
         $cisi->ci_system_id = $request->ci_system_id;
         $cisi->url_build_server = $request->url_build_server;
         $cisi->url_release_manager = $request->url_release_manager;

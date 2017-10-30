@@ -3,16 +3,15 @@
 namespace App\Models\Component;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Component extends Model
 {
 
     protected $fillable = ['id', 'type_id', 'app_code', 'ci_system_instance_id'];
 
-    public function continuousIntegrationSystemInstance()
+    public function cISystemInstance()
     {
-        return $this->belongsTo('\App\Models\QualitySystem\ContinuousIntegrationSystemInstance', 'quality_system_instance_id');
+        return $this->belongsTo('\App\Models\ContinuousIntegrationSystem\CISystemInstance', 'ci_system_instance_id');
     }
 
     public function getLeavesWithCISI()
@@ -24,7 +23,7 @@ class Component extends Model
             $ids = $tree->pluck('component_id');
             $result = Component::whereIn('id', $ids)
                 ->where('type_id', 3)
-                ->with('continuousIntegrationSystemInstance', 'continuousIntegrationSystemInstance.continuousIntegrationSystem')
+                ->with('cISystemInstance', 'cISystemInstance.cISystem')
                 ->get();
         }
 
