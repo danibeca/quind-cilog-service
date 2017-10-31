@@ -15,8 +15,12 @@ class ComponentLeafController extends ApiController
         /** @var Component $component */
         $component = Component::find($componentId);
 
-        return $this->respondStandard((New SecureComponentTransformer())
-            ->transformCollection($component->getLeavesWithCISI()->toArray()));
-        // return $this->respondStandard($component->getLeavesWithCISI()->toArray()));
+        if (isset($component))
+        {
+            return $this->respondStandard((New SecureComponentTransformer())
+                ->transformCollection($component->getLeavesWithCISI()->toArray()));
+        }
+
+        return $this->respondNotFound();
     }
 }
