@@ -74,7 +74,7 @@ class Component extends Model
         $jiv->phase_id = $phase->id;
         $jiv->total_jobs = $totalJobsPerPhase;
         $jiv->existing_jobs = $totalExistingJobs;
-        $jiv->value = $this->getIValue($jiv->existing_jobs, $jiv->total_jobs);
+        $jiv->value = $this->getIndicatorPercentageValue($jiv->existing_jobs, $jiv->total_jobs);
 
         return $jiv;
 
@@ -106,7 +106,7 @@ class Component extends Model
                     $jobIndicatorValue->existing_jobs += $jobIndicatorLeafValue->existing_jobs;
                 }
 
-                $jobIndicatorValue->value = $this->getIValue($jobIndicatorValue->existing_jobs, $jobIndicatorValue->total_jobs);
+                $jobIndicatorValue->value = $this->getIndicatorPercentageValue($jobIndicatorValue->existing_jobs, $jobIndicatorValue->total_jobs);
 
             }
             $jobIndicatorValue->component_id = $this->id;
@@ -117,11 +117,11 @@ class Component extends Model
 
         }
 
-        $jobIndicatorValueGeneral->value = $this->getIValue($jobIndicatorValueGeneral->existing_jobs, $jobIndicatorValueGeneral->total_jobs);
+        $jobIndicatorValueGeneral->value = $this->getIndicatorPercentageValue($jobIndicatorValueGeneral->existing_jobs, $jobIndicatorValueGeneral->total_jobs);
         $jobIndicatorValueGeneral->save();
     }
 
-    public function getIValue($existing_jobs, $total_jobs)
+    public function getIndicatorPercentageValue($existing_jobs, $total_jobs)
     {
         $result = 0;
         if ($total_jobs && $total_jobs !== 0)
@@ -129,7 +129,7 @@ class Component extends Model
             $result = $existing_jobs / $total_jobs;
         }
 
-        return $result;
+        return $result*100;
     }
 }
 

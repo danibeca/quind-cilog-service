@@ -3,13 +3,11 @@
 namespace App\Console\Commands;
 
 
-use App\Models\Component\Indicator;
-use App\Models\Component\IndicatorValue;
 use App\Models\Component\Component;
 use App\Models\Component\ComponentTree;
 use App\Models\Component\JobIndicatorValue;
-use App\Utils\Models\CalculatorQA;
 use App\Utils\Models\Language\SelectedLanguage;
+use App\Utils\Wrapper\HTTPWrapper;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
@@ -82,10 +80,15 @@ class ComponentCalculation extends Command
 
         $analyzableComponent->calculateJobIndicator($root);
 
-        /*$values = JobIndicatorValue::where('component_id', $analyzableComponent->id)->get();
-        $jobIndicatorValueService = '/components/' . $analyzableComponent->id . '/job-indicator-values';
+        $indValue = JobIndicatorValue::where('phase_id', 0)->where('component_id', $analyzableComponent->id)->get()->first();
+        $values = JobIndicatorValue::where('phase_id', '!=', 0)->where('component_id', $analyzableComponent->id)->get();
+        $jobIndicatorValueService = '/components/' . $analyzableComponent->id . '/ci-indicator-values';
+        $jobAutomationValueService = '/components/' . $analyzableComponent->id . '/ci-automation-values';
+        $indValue->ci_indicator_id = 1;
+
         $wrapper = new HTTPWrapper();
-        $wrapper->post($qastaURL . $jobIndicatorValueService, $values);*/
+        $wrapper->post($qastaURL . $jobIndicatorValueService, $indValue);
+        $wrapper->post($qastaURL . $jobAutomationValueService, $values);
     }
 
 
