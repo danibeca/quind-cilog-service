@@ -9,7 +9,7 @@ use App\Utils\Transformers\IndicatorSerieTransformer;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Input;
 
-class ComponentJobVaueController extends ApiController
+class ComponentJobValueController extends ApiController
 {
     public function store($componentId)
     {
