@@ -39,8 +39,9 @@ class APIClientComponentController extends ApiController
             /** @var Component $root */
             foreach ($roots as $root)
             {
-                $root->run_client = 2;
-                $root->save();
+                //TODO Remove comment
+                /*$root->run_client = 2;
+                $root->save();*/
             }
 
             return $this->respondStandard($roots->pluck('id')->toArray());
