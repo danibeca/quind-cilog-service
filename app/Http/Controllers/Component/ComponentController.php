@@ -110,7 +110,22 @@ class ComponentController extends ApiController
         $componentTree = ComponentTree::where('component_id', $component->id)->get()->first();
         if (! $componentTree->isRoot())
         {
-            Component::whereIn('id',$componentTree->getDescendants()->pluck('component_id'))->delete();
+
+            /** @var Component $root */
+            $root = Component::find(ComponentTree::where('component_id', $id)
+                ->get()->first()->getRoot()->component_id);
+            if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
+            {
+                $root->run_client = 3;
+            } else
+            {
+                $root->run_client = 1;
+            }
+
+            $root->save();
+
+
+            Component::whereIn('id', $componentTree->getDescendants()->pluck('component_id'))->delete();
             Component::find($id)->delete();
             ComponentTree::fixTree();
         }
