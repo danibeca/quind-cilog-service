@@ -14,6 +14,7 @@ class CreateJobValuesTable extends Migration
     public function up()
     {
         Schema::create('job_values', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('component_id')->unsigned();
             $table->string('name',200)->nullable();
             $table->string('type',50)->nullable();
