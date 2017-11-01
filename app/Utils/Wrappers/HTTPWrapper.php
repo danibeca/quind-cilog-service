@@ -25,8 +25,6 @@ class HTTPWrapper
 
     public function get($url)
     {
-        //Log::info($url);
-
         try
         {
             $result = $this->client->get($url, $this->setAuth())->getBody()->getContents();
@@ -48,7 +46,7 @@ class HTTPWrapper
         try
         {
             $result = $this->client->post($url, ['json' => $data])->getBody()->getContents();
-            Log::info($result);
+
             return json_decode($result);
 
         } catch (RequestException $e)

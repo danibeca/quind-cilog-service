@@ -29,7 +29,7 @@ $router->group([
     });
 
     $router->group([
-        'prefix' => 'api/v1', 'middleware' => ['auth',]], function () use ($router) {
+        'middleware' => ['auth',]], function () use ($router) {
 
         $router->group([
             'prefix'    => '/components',

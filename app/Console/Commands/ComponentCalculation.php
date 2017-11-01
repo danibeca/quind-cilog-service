@@ -42,7 +42,6 @@ class ComponentCalculation extends Command
                     ->orWhere('last_run_quind', '<=', Carbon::now()->subHours(12));
             })->get()->pluck('id');
 
-        Log::info(json_encode($mainComponentIds));
         foreach ($mainComponentIds as $mainComponentId)
         {
 
@@ -89,9 +88,9 @@ class ComponentCalculation extends Command
         $jobAutomationValueService = '/components/' . $analyzableComponent->id . '/ci-automation-values';
         $indValue->ci_indicator_id = 1;
 
-        $wrapper = new HTTPWrapper();
-        $wrapper->post($qastaURL . $jobIndicatorValueService, $indValue);
-        $wrapper->post($qastaURL . $jobAutomationValueService, $values);
+
+        $this->wrapper->post($qastaURL . $jobIndicatorValueService, $indValue);
+        $this->wrapper->post($qastaURL . $jobAutomationValueService, $values);
     }
 
     private function setWrapper($token)
