@@ -11,7 +11,7 @@
 |
 */
 $router->group([
-    'prefix' => 'api/v1', 'middleware' => ['cors', 'log','lang']], function () use ($router) {
+    'prefix' => 'api/v1', 'middleware' => ['cors', 'log', 'lang']], function () use ($router) {
 
 
     $router->group([
@@ -48,19 +48,21 @@ $router->group([
         $router->post('/', ['uses' => 'CISystemInstanceController@store']);
         $router->put('/{id:[\d]+}', ['uses' => 'CISystemInstanceController@update']);
 
+    });
+
+    $router->group([
+        'prefix'    => '/process-phases',
+        'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
         $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@index']);
         $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
         $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@update']);
         $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
-
     });
-
     $router->group([
         'prefix'    => '/api-clients',
         'namespace' => 'APIClient'], function () use ($router) {
         $router->get('/{code}/roots', ['uses' => 'APIClientComponentController@index']);
     });
-
 
 
 });

@@ -26,7 +26,7 @@ class PhaseJobController extends ApiController
         return $this->respondResourceCreated($phase);
     }
 
-    public function update(Request $request, $jobId, $phaseId)
+    public function update(Request $request, $phaseId, $jobId)
     {
 
         $phase = PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->get()->first();
@@ -41,9 +41,9 @@ class PhaseJobController extends ApiController
 
     }
 
-    public function destroy(Request $request, $jobId, $phaseId)
+    public function destroy(Request $request, $phaseId, $jobId)
     {
-        PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->get()->first();
+        PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->delete();
 
         return $this->respondResourceDeleted();
     }
