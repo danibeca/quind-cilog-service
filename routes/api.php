@@ -20,7 +20,7 @@ $router->group([
     });
 
     $router->group([
-        'prefix'    => '/components',
+        'prefix'    => '/components2',
         'namespace' => 'Component'], function () use ($router) {
 
         $router->get('/{id:[\d]+}/leaves', ['uses' => 'ComponentLeafController@index']);
