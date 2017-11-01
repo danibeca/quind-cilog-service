@@ -29,7 +29,7 @@ $router->group([
     });
 
     $router->group([
-        'middleware' => ['auth',]], function () use ($router) {
+        'middleware' => ['auth']], function () use ($router) {
 
         $router->group([
             'prefix'    => '/components',
@@ -67,9 +67,9 @@ $router->group([
             'prefix'    => '/process-phases',
             'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
             $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@index']);
-            $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
-            $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@update']);
-            $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
+            $router->post('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
+            $router->put('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@update']);
+            $router->delete('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
         });
 
     });
