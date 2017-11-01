@@ -20,7 +20,7 @@ $router->group([
     });
 
     $router->group([
-        'prefix'    => '/components2',
+        'prefix'    => '/components',
         'namespace' => 'Component'], function () use ($router) {
 
         $router->get('/{id:[\d]+}/leaves', ['uses' => 'ComponentLeafController@index']);
@@ -68,8 +68,8 @@ $router->group([
             'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
             $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@index']);
             $router->post('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
-            $router->put('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@update']);
-            $router->delete('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
+            $router->put('/{id:[\d]+}/jobs/{dd:[\d]+}', ['uses' => 'PhaseJobController@update']);
+            $router->delete('/{id:[\d]+}/jobs/{dd:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
         });
 
     });
