@@ -12,7 +12,6 @@ use App\Utils\Wrappers\HTTPWrapper;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 
 
 class ComponentCalculation extends Command
