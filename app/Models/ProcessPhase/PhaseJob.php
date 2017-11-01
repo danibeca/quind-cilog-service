@@ -13,7 +13,16 @@ class PhaseJob extends Model
 
     public function evaluate($value)
     {
-        return preg_match($this->regular_expression, $value);
+        $result = false;
+        foreach (explode(';', $this->regular_expression) as $re)
+        {
+            if (preg_match($re, $value))
+            {
+                $result = true;
+            }
+        }
+
+        return $result;
     }
 
 
