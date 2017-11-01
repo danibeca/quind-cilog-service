@@ -15,6 +15,7 @@ class CreatePhaseJobsTable extends Migration
     {
         Schema::create('phase_jobs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 50);
             $table->string('regular_expression', 250);
             $table->integer('process_phase_id')->unsigned()->nullable();
             $table->timestamps();

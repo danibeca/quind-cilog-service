@@ -28,6 +28,9 @@ $router->group([
         $router->post('/{id:[\d]+}/run-status', ['uses' => 'ComponentAPIClientController@update']);
 
         $router->post('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@store']);
+        $router->get('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@index']);
+        $router->put('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@update']);
+        $router->delete('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@destroy']);
 
     });
 
@@ -44,14 +47,20 @@ $router->group([
         $router->get('/verify', ['uses' => 'CISystemInstanceController@verify']);
         $router->post('/', ['uses' => 'CISystemInstanceController@store']);
         $router->put('/{id:[\d]+}', ['uses' => 'CISystemInstanceController@update']);
+
+        $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@index']);
+        $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
+        $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@update']);
+        $router->get('/{id:[\d]+}/jobs/{id:[\d]+}', ['uses' => 'PhaseJobController@destroy']);
+
     });
 
     $router->group([
         'prefix'    => '/api-clients',
         'namespace' => 'APIClient'], function () use ($router) {
         $router->get('/{code}/roots', ['uses' => 'APIClientComponentController@index']);
-
-
     });
+
+
 
 });
