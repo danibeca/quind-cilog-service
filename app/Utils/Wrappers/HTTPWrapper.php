@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\Wrapper;
+namespace App\Utils\Wrappers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -13,6 +13,7 @@ class HTTPWrapper
     protected $password;
     protected $username;
     protected $client;
+    protected $header;
 
     public function __construct($username = null, $password = null)
     {
@@ -34,27 +35,28 @@ class HTTPWrapper
 
         } catch (RequestException $e)
         {
-            //Report to Quind
+            Log::info($e->getMessage());
+
         } catch (ServerException $e)
         {
-            //Report to Quind
+            Log::info($e->getMessage());
         }
     }
 
     public function post($url, $data)
     {
-    //    Log::info($url);
-
         try
         {
-            $this->client->post($url, ['json' => $data]);
+            $result = $this->client->post($url, ['json' => $data])->getBody()->getContents();
+            Log::info($result);
+            return json_decode($result);
 
         } catch (RequestException $e)
         {
-//            Log::info($e->getMessage());
+            Log::info($e->getMessage());
         } catch (ServerException $e)
         {
-  //          Log::info($e->getMessage());
+            Log::info($e->getMessage());
         }
     }
 
@@ -67,5 +69,14 @@ class HTTPWrapper
         }
 
         return $result;
+    }
+
+    public function setToken($token)
+    {
+        $this->header = [
+            'Accept'        => 'application/json',
+            'Authorization' => 'Bearer ' . $token->access_token,
+        ];
+        $this->client = new Client(['verify' => false, 'timeout' => 10, 'headers' => $this->header]);
     }
 }

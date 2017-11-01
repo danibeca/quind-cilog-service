@@ -7,7 +7,8 @@ use App\Models\Component\Component;
 use App\Models\Component\ComponentTree;
 use App\Models\Component\JobIndicatorValue;
 use App\Utils\Models\Language\SelectedLanguage;
-use App\Utils\Wrapper\HTTPWrapper;
+use App\Utils\Wrappers\AuthServer;
+use App\Utils\Wrappers\HTTPWrapper;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
@@ -20,7 +21,7 @@ class ComponentCalculation extends Command
 
     protected $signature = 'component:calculate';
     protected $description = 'Calculate component CI indicators';
-    protected $accounts;
+    protected $wrapper;
 
     public function handle()
     {
@@ -30,6 +31,8 @@ class ComponentCalculation extends Command
         $instance = App::make(SelectedLanguage::class);
         $instance->setLanguageId(1);
 
+
+        $this->setWrapper(AuthServer::getToken(env('QOAUTH_SERVER'), env('QOAUTH_CLIENT'), env('QOAUTH_SECRET')));
         $qastaURL = env('QASTA_ENDPOINT');
 
         $mainComponentIds = Component::
@@ -89,6 +92,14 @@ class ComponentCalculation extends Command
         $wrapper = new HTTPWrapper();
         $wrapper->post($qastaURL . $jobIndicatorValueService, $indValue);
         $wrapper->post($qastaURL . $jobAutomationValueService, $values);
+    }
+
+    private function setWrapper($token)
+    {
+        /** @var HTTPWrapper wrapper */
+        $this->wrapper = new HTTPWrapper();
+        $this->wrapper->setToken($token);
+
     }
 
 

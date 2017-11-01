@@ -11,7 +11,9 @@
         "barryvdh/laravel-cors": "^0.9.3",
         "illuminate/routing": "5.5.*",
         "kalnoy/nestedset": "^4.3",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "lcobucci/jwt": "^3.2"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
