@@ -30,13 +30,13 @@ class ProcessPhaseController extends ApiController
         return $this->respondResourceCreated($phase);
     }
 
-    public function update(Request $request, $phaseId, $componentId)
+    public function update(Request $request, $componentId, $phaseId)
     {
 
         return $this->respond('OK');
     }
 
-    public function destroy(Request $request, $phaseId, $componentId)
+    public function destroy(Request $request, $componentId, $phaseId)
     {
         ProcessPhase::where('componentId', $componentId)->where('id', $phaseId)->get()->delete();
 
