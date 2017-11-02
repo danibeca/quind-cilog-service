@@ -37,7 +37,7 @@ class PhaseJobController extends ApiController
             $phase->save();
         }
 
-        return $this->respond('OK');
+        return $this->respond($phase);
 
     }
 
