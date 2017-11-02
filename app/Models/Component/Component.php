@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Log;
 class Component extends Model
 {
 
-    protected $fillable = ['id', 'type_id', 'app_code', 'ci_system_instance_id'];
+    protected $fillable = ['id', 'type_id', 'ci_system_instance_id', 'classifier_expression', 'jobs_path'];
+
 
     public function cISystemInstance()
     {
@@ -129,7 +130,7 @@ class Component extends Model
             $result = $existing_jobs / $total_jobs;
         }
 
-        return $result*100;
+        return $result * 100;
     }
 }
 
