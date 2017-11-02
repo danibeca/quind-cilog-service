@@ -17,7 +17,7 @@ class ProcessPhaseController extends ApiController
 
     public function index($componentId)
     {
-        return $this->respondData(ProcessPhase::where('component_owner_id', $componentId)->get());
+        return $this->respondData(ProcessPhase::where('component_owner_id', $componentId)->with('jobs')->get());
     }
 
     public function store(Request $request, $id)
