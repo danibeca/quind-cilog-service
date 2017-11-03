@@ -39,8 +39,30 @@ class ProcessPhaseController extends ApiController
     public function destroy(Request $request, $componentId, $phaseId)
     {
         ProcessPhase::where('component_owner_id', $componentId)->where('id', $phaseId)->delete();
-
+        $this->updateRun($phaseId);
         return $this->respondResourceDeleted();
+
+
     }
+
+    public function updateRun($idPhase)
+    {
+        $rootId = ProcessPhase::find($idPhase)->component_owner_id;
+        $root = Component::find($rootId);
+
+        if ($root)
+        {
+            if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
+            {
+                $root->run_client = 3;
+            } else
+            {
+                $root->run_client = 1;
+            }
+
+            $root->save();
+        }
+    }
+
 
 }

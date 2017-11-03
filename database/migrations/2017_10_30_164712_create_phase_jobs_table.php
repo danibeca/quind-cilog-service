@@ -20,7 +20,7 @@ class CreatePhaseJobsTable extends Migration
             $table->integer('process_phase_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('process_phase_id')->references('id')->on('process_phases');
+            $table->foreign('process_phase_id')->references('id')->on('process_phases')->onDelete('cascade');
         });
     }
 
