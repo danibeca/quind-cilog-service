@@ -56,6 +56,7 @@ class PhaseJobController extends ApiController
     {
         $rootId = ProcessPhase::find($idPhase)->component_owner_id;
         $root = Component::find($rootId);
+
         if ($root)
         {
             if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
