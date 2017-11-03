@@ -19,29 +19,29 @@ class PhaseJobController extends ApiController
 
     public function store(Request $request, $id)
     {
-        $phase = new PhaseJob();
-        $phase->process_phase_id = $id;
-        $phase->regular_expression = $request->regular_expression;
-        $phase->name = $request->name;
-        $phase->save();
+        $job = new PhaseJob();
+        $job->process_phase_id = $id;
+        $job->regular_expression = $request->regular_expression;
+        $job->name = $request->name;
+        $job->save();
         $this->updateRun($id);
 
-        return $this->respondResourceCreated($phase);
+        return $this->respondResourceCreated($job);
     }
 
     public function update(Request $request, $phaseId, $jobId)
     {
-
-        $phase = PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->get()->first();
-        if (isset($phase))
+        $job = PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->get()->first();
+        if (isset($job))
         {
-            $phase->regular_expression = $request->regular_expression;
-            $phase->name = $request->name;
-            $phase->save();
+            $this->updateRun($phaseId);
+            $job->regular_expression = $request->regular_expression;
+            $job->name = $request->name;
+            $job->save();
         }
-        $this->updateRun($phaseId);
 
-        return $this->respond($phase);
+
+        return $this->respond($job);
 
     }
 
@@ -56,7 +56,7 @@ class PhaseJobController extends ApiController
     {
         $root = new Component(
             ComponentTree::where('component_id',
-                ProcessPhase::find($idPhase)->component_id)
+                ProcessPhase::find($idPhase)->component_owner_id)
                 ->get()->first()->getRoot()->component_id);
         if ($root)
         {
