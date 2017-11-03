@@ -54,10 +54,8 @@ class PhaseJobController extends ApiController
 
     public function updateRun($idPhase)
     {
-        $root = new Component(
-            ComponentTree::where('component_id',
-                ProcessPhase::find($idPhase)->component_owner_id)
-                ->get()->first()->getRoot()->component_id);
+        $rootId = ProcessPhase::find($idPhase)->component_owner_id;
+        $root = Component::find($rootId);
         if ($root)
         {
             if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
