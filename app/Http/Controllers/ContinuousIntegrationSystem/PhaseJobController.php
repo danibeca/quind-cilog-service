@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\ContinuousIntegrationSystem;
 
 use App\Http\Controllers\ApiController;
-use App\Models\CISystem\CISystem;
+use App\Models\Component\Component;
+use App\Models\Component\ComponentTree;
 use App\Models\ProcessPhase\PhaseJob;
+use App\Models\ProcessPhase\ProcessPhase;
 use Illuminate\Http\Request;
 
 class PhaseJobController extends ApiController
@@ -22,6 +24,7 @@ class PhaseJobController extends ApiController
         $phase->regular_expression = $request->regular_expression;
         $phase->name = $request->name;
         $phase->save();
+        $this->updateRun($id);
 
         return $this->respondResourceCreated($phase);
     }
@@ -36,6 +39,7 @@ class PhaseJobController extends ApiController
             $phase->name = $request->name;
             $phase->save();
         }
+        $this->updateRun($phaseId);
 
         return $this->respond($phase);
 
@@ -44,8 +48,28 @@ class PhaseJobController extends ApiController
     public function destroy(Request $request, $phaseId, $jobId)
     {
         PhaseJob::where('id', $jobId)->where('process_phase_id', $phaseId)->delete();
-
+        $this->updateRun($phaseId);
         return $this->respondResourceDeleted();
+    }
+
+    public function updateRun($idPhase)
+    {
+        $root = new Component(
+            ComponentTree::where('component_id',
+                ProcessPhase::find($idPhase)->component_id)
+                ->get()->first()->getRoot()->component_id);
+        if ($root)
+        {
+            if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
+            {
+                $root->run_client = 3;
+            } else
+            {
+                $root->run_client = 1;
+            }
+
+            $root->save();
+        }
     }
 
 
