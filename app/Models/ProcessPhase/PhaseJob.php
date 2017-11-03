@@ -16,7 +16,7 @@ class PhaseJob extends Model
         $result = false;
         foreach (explode(';', $this->regular_expression) as $re)
         {
-            if (preg_match($re, $value))
+            if (preg_match('/'.$re.'/', $value))
             {
                 $result = true;
             }
