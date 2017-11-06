@@ -18,7 +18,7 @@ class ComponentProcessPhaseController extends ApiController
     public function index($componentId)
     {
         //TODO move to another component job controller.
-        return $this->respondData(Component::where('id', $componentId)->with('existingJobs')->get()->pluck('existing_job'));
+        return $this->respondData(Component::where('id', $componentId)->with('existingJobs')->get());
     }
 
     public function store(Request $request, $id)
