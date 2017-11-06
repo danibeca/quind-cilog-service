@@ -37,6 +37,7 @@ $router->group([
 
             $router->get('/', ['uses' => 'ComponentController@index']);
             $router->post('/', ['uses' => 'ComponentController@store']);
+            $router->get('/{id:[\d]+}', ['uses' => 'ComponentController@show']);
             $router->put('/{id:[\d]+}', ['uses' => 'ComponentController@update']);
             $router->delete('/{id:[\d]+}', ['uses' => 'ComponentController@destroy']);
 

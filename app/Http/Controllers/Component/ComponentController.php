@@ -82,6 +82,11 @@ class ComponentController extends ApiController
     }
 
 
+    public function show($id)
+    {
+        return $this->respondData(Component::find($id));
+    }
+
     public function update(Request $request, $id)
     {
         /** @var Component $component */
