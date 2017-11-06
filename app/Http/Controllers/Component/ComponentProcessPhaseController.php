@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Models\Component\Component;
 use App\Models\Component\ComponentTree;
 use App\Models\ProcessPhase\ProcessPhase;
+use App\Utils\Transformers\ExistingJobTransformer;
 use App\Utils\Transformers\SimpleComponentTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -18,7 +19,7 @@ class ComponentProcessPhaseController extends ApiController
     public function index($componentId)
     {
         //TODO move to another component job controller.
-        return $this->respondData(Component::where('id', $componentId)->with('existingJobs')->get()->pluck('existing_jobs')->all());
+        return $this->respondData((new ExistingJobTransformer())->transformCollection(Component::where('id', $componentId)->with('existingJobs')->get()->toArray()));
     }
 
     public function store(Request $request, $id)
@@ -41,6 +42,7 @@ class ComponentProcessPhaseController extends ApiController
     {
         $this->updateRun($phaseId);
         ProcessPhase::where('component_owner_id', $componentId)->where('id', $phaseId)->delete();
+
         return $this->respondResourceDeleted();
 
 
