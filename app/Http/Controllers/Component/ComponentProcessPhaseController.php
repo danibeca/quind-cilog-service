@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Component;
 use App\Http\Controllers\ApiController;
 use App\Models\Component\Component;
 use App\Models\Component\ComponentTree;
+use App\Models\ProcessPhase\ExistingJob;
 use App\Models\ProcessPhase\ProcessPhase;
 use App\Utils\Transformers\ExistingJobTransformer;
 use App\Utils\Transformers\SimpleComponentTransformer;
@@ -19,7 +20,7 @@ class ComponentProcessPhaseController extends ApiController
     public function index($componentId)
     {
         //TODO move to another component job controller.
-        return $this->respondData((new ExistingJobTransformer())->transformCollection(Component::where('id', $componentId)->with('existingJobs')->get()->pluck('existing_jobs')->toArray()));
+        return $this->respondData((new ExistingJobTransformer())->transformCollection(ExistingJob::where('component_id', $componentId)->get()->toArray()));
     }
 
     public function store(Request $request, $id)
