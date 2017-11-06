@@ -102,6 +102,19 @@ class ComponentController extends ApiController
                 $componentTree->save();
                 ComponentTree::fixTree();
             }
+
+            /** @var Component $root */
+            $root = Component::find(ComponentTree::where('component_id', $id)
+                ->get()->first()->getRoot()->component_id);
+            if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
+            {
+                $root->run_client = 3;
+            } else
+            {
+                $root->run_client = 1;
+            }
+
+            $root->save();
         }
 
         return $this->respond('OK');
