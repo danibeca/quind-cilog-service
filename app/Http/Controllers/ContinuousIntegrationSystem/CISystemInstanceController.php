@@ -6,6 +6,7 @@ namespace App\Http\Controllers\ContinuousIntegrationSystem;
 use App\Http\Controllers\ApiController;
 use App\Models\APIClient\APIClient;
 use App\Models\CISystem\CISystemInstance;
+use App\Models\Component\Component;
 use App\Utils\Transformers\CISystemInstanceTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -100,6 +101,7 @@ class CISystemInstanceController extends ApiController
                 $cisi->api_client_id = $newClient->id;
             }
             $cisi->save();
+            $this->updateRun($request->component_owner_id);
 
             return $this->respond('OK');
         }
@@ -112,6 +114,25 @@ class CISystemInstanceController extends ApiController
     {
         //return $this->respond(QualitySystemInstance::verify(Input::get('url'), Input::get('username'), Input::get('password')));
         return $this->respond(true);
+    }
+
+
+    public function updateRun($componentId)
+    {
+        $root = Component::find($componentId);
+
+        if ($root)
+        {
+            if ($root->run_client === 2 || $root->run_quind === 2 || $root->run_quind === 1)
+            {
+                $root->run_client = 3;
+            } else
+            {
+                $root->run_client = 1;
+            }
+
+            $root->save();
+        }
     }
 
 
