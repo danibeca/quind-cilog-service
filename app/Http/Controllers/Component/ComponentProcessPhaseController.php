@@ -29,13 +29,15 @@ class ComponentProcessPhaseController extends ApiController
         $phase->component_owner_id = $id;
         $phase->id = $request->id;
         $phase->save();
-
+        $this->updateRun($phase->id);
         return $this->respondResourceCreated($phase);
     }
 
     public function update(Request $request, $componentId, $phaseId)
     {
-
+        if(ProcessPhase::find($phaseId)){
+            $this->updateRun($phaseId);
+        }
         return $this->respond('OK');
     }
 
