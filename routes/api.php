@@ -41,10 +41,10 @@ $router->group([
             $router->put('/{id:[\d]+}', ['uses' => 'ComponentController@update']);
             $router->delete('/{id:[\d]+}', ['uses' => 'ComponentController@destroy']);
 
-            $router->post('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@store']);
-            $router->get('/{id:[\d]+}/process-phases', ['uses' => 'ProcessPhaseController@index']);
-            $router->put('/{id:[\d]+}/process-phases/{pp:[\d]+}', ['uses' => 'ProcessPhaseController@update']);
-            $router->delete('/{id:[\d]+}/process-phases/{pp:[\d]+}', ['uses' => 'ProcessPhaseController@destroy']);
+            $router->post('/{id:[\d]+}/process-phases', ['uses' => 'ComponentProcessPhaseController@store']);
+            $router->get('/{id:[\d]+}/process-phases', ['uses' => 'ComponentProcessPhaseController@index']);
+            $router->put('/{id:[\d]+}/process-phases/{pp:[\d]+}', ['uses' => 'ComponentProcessPhaseController@update']);
+            $router->delete('/{id:[\d]+}/process-phases/{pp:[\d]+}', ['uses' => 'ComponentProcessPhaseController@destroy']);
 
         });
 
@@ -67,6 +67,7 @@ $router->group([
         $router->group([
             'prefix'    => '/process-phases',
             'namespace' => 'ContinuousIntegrationSystem'], function () use ($router) {
+            $router->get('/', ['uses' => 'ProcessPhaseController@index']);
             $router->get('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@index']);
             $router->post('/{id:[\d]+}/jobs', ['uses' => 'PhaseJobController@store']);
             $router->put('/{id:[\d]+}/jobs/{dd:[\d]+}', ['uses' => 'PhaseJobController@update']);

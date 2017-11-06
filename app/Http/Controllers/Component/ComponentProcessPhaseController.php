@@ -11,13 +11,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
 
-class ProcessPhaseController extends ApiController
+class ComponentProcessPhaseController extends ApiController
 {
 
 
     public function index($componentId)
     {
-        return $this->respondData(ProcessPhase::where('component_owner_id', $componentId)->with('jobs')->get());
+        //TODO move to another component job controller.
+        return $this->respondData(Component::where('id', $componentId)->with('existingJobs')->get()->pluck('existing_job'));
     }
 
     public function store(Request $request, $id)

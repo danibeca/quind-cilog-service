@@ -2,6 +2,7 @@
 
 namespace App\Models\Component;
 
+use App\Models\ProcessPhase\ExistingJob;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProcessPhase\PhaseJob;
 use App\Models\ProcessPhase\ProcessPhase;
@@ -16,6 +17,11 @@ class Component extends Model
     public function cISystemInstance()
     {
         return $this->belongsTo('\App\Models\CISystem\CISystemInstance', 'ci_system_instance_id');
+    }
+
+    public function existingJobs()
+    {
+        return $this->hasMany('\App\Models\ProcessPhase\ExistingJob', 'component_id');
     }
 
     public function getLeavesWithCISI()
@@ -66,6 +72,11 @@ class Component extends Model
                 if ($job->evaluate($jobValue->name))
                 {
                     $totalExistingJobs++;
+                    $existingJob = new ExistingJob();
+                    $existingJob->component_id = $this->id;
+                    $existingJob->phase_job_id = $job->id;
+                    $existingJob->save();
+                    break;
                 }
             }
         }
@@ -84,6 +95,8 @@ class Component extends Model
     public function calculateJobIndicator($root)
     {
         JobIndicatorValue::where('component_id', $this->id)->delete();
+        ExistingJob::where('component_id', $this->id)->delete();
+
         $jobIndicatorValueGeneral = new JobIndicatorValue();
         $jobIndicatorValueGeneral->component_id = $this->id;
         $jobIndicatorValueGeneral->phase_id = 0;
